@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %} 
+  <link rel='stylesheet' type='text/css' href="{% static 'main.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+  <div class="container">
+    <header>
+        <!-- navi-title -------------------------------------->
+        <nav id='process'>
+          <a href="{% url 'main' %}" class="otherNavi" >メイン</a>
+          <a href="{% url 'information' %}" class="currentNavi">利用案内</a>
+        </nav>
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/static/tanzawa.png" id="tanzawa">
+        <!-- 簡単検索 ---------------------------------------->
+    </header>  
+    
+    <main>
+        <section class="middle-box">
+          <h3>【利用案内】<br><small><small>来館の前に、確認してください。</small></small></h3>
+        </section>
+        <!-------------------------------->
+        <section>
+          <section>
+            <img src="/static/駐車場.png" class="information-upper">
+            <article class="information-upper" >駐車場は本館裏の駐車場をご利用ください。<br>受付横の無料発券機をご利用ください。<br>2時間まで無料となります。</article>
+          </section>
+          <!------------------------>
+          <p style="clear:both;"></p>
+          <!------------------------>
+          <section>   
+            <img src="/static/レイアウト.png" class="information-lower">
+            <article class="information-lower">２階奥の文庫本の書棚のレイアウトを変更しました。<br>ご利用の際、ご注意ください。<br>児童本のコーナーは3階に移動しました。<br>エレベータは正面玄関の右奥にあります。ご利用ください。</article>
+          </section>
+        </section>
+    </main>
+  </div>
+{% endblock content %}

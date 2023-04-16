@@ -1,0 +1,282 @@
+body{
+    text-align: center;
+    font-family: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
+    background-color:rgb(221, 247, 218);
+    width:100%;
+}
+
+.otherNavi,#prev,#next,.cancel{
+    text-decoration-line: none;
+    background-color:rgb(44, 44, 235);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+    border:none;
+}
+
+.otherNavi:hover,.search-btn:hover,#prev:hover,#next:hover,.btn:hover,.btn-logout:hover,.header-li:hover,.cancel:hover{
+    background-color:rgb(115, 94, 235);
+    color: rgb(250, 180, 28);
+}
+
+.currentNavi,.currentNavi:hover{
+    text-decoration-line: none;
+    background-color: rgb(17, 226, 80);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+#prev,#next{
+    display:inline-block;
+    position:relative;
+    margin-left: 50px;
+    margin-right: 50px;
+    top:-40px;
+}
+
+.middle-box{
+    display:flex;
+    position:relative;
+    height:80px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-top: solid 1px rgb(165, 165, 165);
+    border-bottom:solid 1px rgb(165, 165, 165);
+    font-size: 20px;
+    height:100px;
+}
+
+.under-box{
+    display:flex;
+}
+
+.search-btn{
+    display:inline-block;
+    position:relative;
+    text-decoration-line: none;
+    background-color:rgb(44, 44, 235);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+    border: rgb(44, 44, 235);
+    margin:10px;
+}
+
+.application-title{
+    position:relative;
+    top:65px;
+    margin-bottom: -10px;
+}
+
+.reservation-title{
+    position:relative;
+    top:-10px;
+    margin-bottom: -10px;
+}
+
+
+#process{
+    position:absolute;
+    left:50%;
+    top:40px;
+    transform:translateX(-50%);
+}
+
+#tanzawa{
+    display:block;
+    position:relative;
+    top:-30px;
+    margin-top: 100px;
+    width:100%;
+    height:100px;
+}
+
+.comment{
+    position:relative;
+    top:-20px;
+    font-size:20px;
+    background-color:rgb(221, 247, 218);
+    width:900px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+}
+
+.block-right{
+    width:55%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.block-center{
+    width:50%;
+    font-size:20px;
+}
+
+.block-let{
+    vertical-align: top;
+    width:30%;
+}
+
+#calendar_box{
+    display: inline-block;
+    position:relative;
+    margin-top: -30px;
+
+}
+
+#toukoudai{
+    height:250px;
+}
+
+th{
+    background-color:rgb(221, 247, 218);
+    border-collapse:collapse;
+    margin: 10 0 10 0;
+    padding: 10 0 10 0;
+    font-size: 20px;
+    height:35px;
+    background-color:rgb(160, 247, 151);
+}
+
+
+
+td,.td2,.td3{
+    background-color:rgb(221, 247, 218);
+    border-collapse:collapse;
+    font-size: 20px;
+    height:100px;    
+}
+
+.td2{
+    height:50px;    
+}
+
+tr:nth-of-type(2n+1) td{
+    background-color:rgb(195, 248, 189);
+}
+
+.td3{
+    background-color:rgb(229, 247, 158);
+    height:40px;    
+}
+
+.td4{
+    font-size: 18px;
+    height:20px;    
+    width:40px;
+}
+
+.td5{
+    font-size: 18px;
+    height:20px;  
+    color:red;  
+    width:40px;
+}
+
+
+tr:nth-of-type(2n+1) .td3{
+    background-color:rgb(244, 248, 225);
+}
+
+.page{
+    text-decoration-line: none;
+    background-color:rgb(44, 44, 235);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+    border:none;
+}
+
+#reserved{
+    text-decoration-line: none;
+    background-color:rgb(163, 156, 159);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.th-res{
+  width:100px;
+}
+
+.th-name{
+    width:800px;
+}
+
+.th-auth ,.th-pub,.th-year{
+    width:200px;
+}
+
+.btn,.btn-logout{
+    display:inline-block;
+    position:relative;
+    font-size: 20px;
+    width:200px;
+    background-color:   rgb(44, 44, 235);
+    height:40px;
+    text-align: center;
+    top:10px;
+    color: white;
+}
+
+.btn-logout{
+    position:absolute;
+    width:120px;
+    height:30px;
+    top:280px;
+    right:5%;
+    border-radius:5px;
+    text-decoration-line: none;
+}
+
+
+.sort-hearder {
+    display:block;
+    position:absolute;
+    right:0%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: rgb(179, 206, 175);
+    width:100%;
+}
+
+li{
+    float: right;
+}
+
+.header-li{
+    background-color:   rgb(44, 44, 235);;
+    border-color: rgb(168, 230, 209);
+    color:white;
+}
+
+.information-upper,.information-lower{
+    float:left;
+    height:250px;
+    font-size:25px;
+    margin-right:20px;
+    text-align:left;
+    
+}
+
+.information-lower{
+    float:right;
+    margin-left:20px;
+}
+
+#map {
+    position: relative;/*absolute;*/
+    top: 5px;/*54%;*/
+    left: 30px;/*13%;*/
+    width: 400px;
+    height: 300px;
+    border:solid 1px rgb(208, 206, 206);
+}

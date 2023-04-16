@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'kanri.css' %}"></link>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <nav id='process'>
+            <a href="{% url 'rent' %}" class="otherNavi" >貸出し</a>
+            <a   class="currentNavi">取置き</a>
+            <a href="{% url 'comment' %}"  class="otherNavi">情報</a>
+        </nav>
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/static/tanzawa2.png" id="tanzawa">
+        <a href="{% url 'logout' %}" class="btnA">ログアウト</a>
+       
+        <br>
+
+        <hr class="hr2">
+        <h2 class="reservationTitle">取置き依頼</h2>
+        <table class="table2">
+            <tr >
+                <th class="th-name" style="background-color:rgb(247, 214, 71);">書籍名</th>
+                <th class="th-auth" style="background-color:rgb(247, 214, 71);">著者</th>
+                <th class="th-pub"  style="background-color:rgb(247, 214, 71);">出版社</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">発行年</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">ﾕｰｻﾞID</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">アクション</th>
+            </tr>
+            {% for i in book_list %}
+            <tr>
+                {% for j in i %}
+                    {% if j == None %}
+                        <td class="td3">-</td>
+
+                    {% elif j == None %}
+                        <td class="td3">貸出し前</td>
+                    {% elif j == 0 %}  
+                        <td class="td3"><button type="submit" name="implement" id="implement+{{i.0}}" class="cancel" value="{{i.0}}">取置き</button></td>
+                        <script>
+                            var btn = document.getElementById('implement+{{i.0}}');
+                            btn.addEventListener('click', function(e) {
+                            var result = window.confirm('\取置きして良いですか！');
+                            if( result == true ) {
+                            }
+                            else {
+                            e.preventDefault();
+                            }
+                            })
+                        </script>
+                    {% else %}
+                        <td class="td3">{{j}}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>   
+            {% endfor %}
+        </table>
+
+        <br><br>
+        <h2 class="reservationTitle">取置き済み</h2>
+        <h5>(期日を超えたらキャンセル)</h5>
+        <table class="table2">
+
+        <table class="table2">
+            <tr >
+                <th class="th-name" style="background-color:rgb(247, 214, 71);">書籍名</th>
+                <th class="th-auth" style="background-color:rgb(247, 214, 71);">著者</th>
+                <th class="th-pub"  style="background-color:rgb(247, 214, 71);">出版社</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">期限</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">ﾕｰｻﾞID</th>
+                <th class="th-year" style="background-color:rgb(247, 214, 71);">アクション</th>
+            </tr>
+            {% for i in reserved_list %}
+            <tr>
+                {% for j in i %}
+                    {% if j == None %}
+                        <td class="td3">-</td>
+
+                    {% elif j == None %}
+                        <td class="td3">貸出し前</td>
+                    {% elif j == 0 %}  
+                        <td class="td3"><button type="submit" name="cancel" id="cancel+{{i.0}}" class="cancel" value="{{i.0}}">キャンセル</button></td>
+                        <script>
+                            var btn = document.getElementById('cancel+{{i.0}}');
+                            btn.addEventListener('click', function(e) {
+                            var result = window.confirm('\キャンセルして良いですか！');
+                            if( result == true ) {
+                            }
+                            else {
+                            e.preventDefault();
+                            }
+                            })
+                        </script>
+                    {% else %}
+                        <td class="td3">{{j}}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>   
+            {% endfor %}
+        </table>
+
+
+
+
+
+</form>
+    
+</div>
+{% endblock %}

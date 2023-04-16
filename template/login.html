@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+
+<div class="container">
+    <nav id='process'>
+        <a href="{% url 'main' %}" class="otherNavi">メイン</a>
+    </nav>
+
+    <h1 class="application-title">片倉図書館</h1>
+    <img src="/static/tanzawa.png" id="tanzawa">
+
+    <h4>ＩＤ、パスワードを入力して<br>マイページへログインしてください。</h4>
+    <br><hr>
+    <body>
+        <form action="" method="POST" class="text-input">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {{ field }}
+                <br>
+                {{ field.errors }}
+            <br>
+            {% endfor %}
+            <hr>
+            <button type="submit" class="otherNavi">ログイン</button>{% csrf_token %}
+        </form>
+    </body>
+</div>
+{% endblock content %}

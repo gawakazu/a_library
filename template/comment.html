@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %} 
+  <link rel='stylesheet' type='text/css' href="{% static 'kanri.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+    <form class="form-signin" method='post'>{% csrf_token %} 
+      <navi id='process'>
+        <a  href="{% url 'rent' %}" class="otherNavi">貸出し</a>
+            <a href="{% url 'reserving' %}"  class="otherNavi">取置き</a>
+            <a class="currentNavi">情報</a>
+    </navi>
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/static/tanzawa2.png" id="tanzawa">
+        <br><hr>
+
+        
+        
+            <a href="{% url 'logout' %}" class="btnA">ログアウト</a>
+        
+
+    <h1>情報</h1>
+    <div style="display:inline-block;">
+    <table>
+        <tr>
+            <th>id</th>
+            <th>comment</th>
+            <th>status</th>
+            <th>update</th>
+            <th>delete</th>
+
+        </tr>
+        {% for i in object_list %}
+        <tr>
+            <td style="height: 20px;width:10%;">{{i.id}}</td>
+            <td style="height: 20px;width:60%;">{{i.comment}}</td>
+            <td style="height: 20px;width:10%;">{{i.status}}</td>
+            <td style="height: 20px;width:10%;"><a href="{% url 'update' i.pk %}" class="otherNavi">編集{{i.id}}</a></td>
+            <td style="height: 20px;width:10%;"><a href="{% url 'delete' i.pk %}" class="otherNavi">削除{{i.id}}</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <br><br>
+    <a href="{% url 'create' %}" class="otherNavi">作成</a>
+
+
+</div>
+{% endblock content %}

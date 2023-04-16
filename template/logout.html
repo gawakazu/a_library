@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <title>logout</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+    <nav id='process'>
+        <a href="{% url 'main' %}" class="otherNavi">メイン</a>
+        <a href="{% url 'login' %}" class="otherNavi">利用案内</a>
+    </nav>
+    <h1 class="application-title">片倉図書館</h1>
+        <img src="/media/tanzawa.png" id="tanzawa">
+    <body>
+        <h2 >ログアウトしました。</h2>
+        
+    </body>
+
+</div>
+{% endblock content %}

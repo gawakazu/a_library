@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %} 
+  <link rel='stylesheet' type='text/css' href="{% static 'main.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+    <a style="display:block;height:30px; background-color:rgb(179, 206, 175);"></a>
+
+    <div class="container">
+        <header>
+            <!-- navi-title -------------------------------------->
+            <nav id='process'>
+                <a href="{% url 'main' %}" class="otherNavi" >メイン</a>
+                <a href="{% url 'reservation' kensaku %}" class="otherNavi">マイページ</a>
+                <a class="currentNavi">履歴</a>
+                <a href="{% url 'information' %}" class="otherNavi">利用案内</a>
+            </nav>
+            <h1 class="application-title">片倉図書館</h1>
+            <img src="/static/tanzawa.png" id="tanzawa">
+        </header>
+
+        <main>
+            <!-- 中段　コメント -------------------------------------->    
+            <section class="middle-box">
+                <h3>【貸出し履歴】<br><small><small>過去に貸出しを行った書籍の一覧です。参照ください。</small></small></h3>
+            </section>
+            <!-- 貸出し履歴 -------------------------------------->  
+            <section class='parent-t'>
+                <table>
+                    <tr>
+                        <th class="th-auth">書籍ID</th>
+                        <th class="th-name">書籍名</th>
+                        <th class="th-auth">貸出し日</th>
+                        <th class="th-auth">返却日</th>
+                    </tr>
+                    {% for i in object_list %}
+                    <tr>
+                        <td class="td2">{{i.id}}</td>
+                        <td class="td2">{{i.book}}</td>
+                        <td class="td2">{{i.start_day}}</td>
+                        <td class="td2">{{i.end_day}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
+        </main>
+    </div>
+{% endblock content %}

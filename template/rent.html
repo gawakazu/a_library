@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'kanri.css' %}"></link>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <nav id='process'>
+            <a  class="currentNavi">貸出し</a>
+            <a href="{% url 'reserving' %}"  class="otherNavi">取置き</a>
+            <a href="{% url 'comment' %}"  class="otherNavi">情報</a>
+        </nav>
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/static/tanzawa2.png" id="tanzawa">
+
+        <br><hr>   
+
+        <label for="inputbox" class="kensaku" >ユーザID</label>
+        <input type="text" id="userid" name="userid" placeholder="ユーザー名を入力してください" size="50px" >
+            <button id="btnC" type="submit"   >入力</button>
+        </input><br><br>
+        <a href="{% url 'logout' %}" class="btnA">ログアウト</a>
+       
+        <hr class="hr2">
+        <h3>{{userid}}</h3>
+        <label for="inputbox" class="kensaku" >貸出し書籍</label>
+        <input type="text" id="book" name="book" placeholder="書籍名を入力してください" size="50px" >
+            <button id="btnD" type="submit" name="reservation"  value="{{userid}}" >貸出/返却</button>
+            <script>
+                var btn = document.getElementById("btnD");
+                
+                let rentbook = "{{rent_book|safe}}";  
+                
+                //rentbook= rentbook.replace('[',''); 
+                //rentbook= rentbook.replace(']',''); 
+                rentbook= rentbook.split("'").join(''); 
+                //console.log("--rent--",rentbook);  
+                var rentbook_list = rentbook.split(",");
+                //console.log("--rentA--",rentbook_list); 
+                var result = rentbook_list.filter(function( item ) {
+                    return item !== ',';
+                }); 
+                //console.log("--result---",result);  
+                //console.log("--rentX--",book.value);     
+                //console.log("--rentN--",rentbook_list.length);       
+                btn.addEventListener('click',function(e){
+                    var book = document.getElementById("book");
+                    console.log("--rent--",rentbook);  
+                    console.log("--book.value--",book.value);  
+                    if(rentbook.indexOf(book.value)>0){
+                        var xxx = "返却ですか？";
+                    }else if(rentbook_list.length>4){
+                        var xxx = "貸出し制限（5冊）以上です。"
+                    }else{
+                        var xxx = "貸出しですか？";
+                    }
+
+                    var result = window.confirm(xxx);
+                    if (result == true ){
+                    }
+                    else{e.preventDefault();
+                    }
+                })
+            </script>
+        </input>
+
+
+    <br><br>
+    
+    <h2 class="reservationTitle">予約・貸出し書籍</h2>
+    <table class="table2">
+        <tr >
+            <th class="th-name" style="background-color:rgb(247, 214, 71);">書籍名</th>
+            <th class="th-auth" style="background-color:rgb(247, 214, 71);">著者</th>
+            <th class="th-pub" style="background-color:rgb(247, 214, 71);">出版社</th>
+            <th class="th-year" style="background-color:rgb(247, 214, 71);">取置き期限</th>
+            <th class="th-year" style="background-color:rgb(247, 214, 71);">返却日</th>
+
+        </tr>
+        {% for i in book_list %}
+        <tr>
+            {% for j in i %}
+                {% if j == None %}
+                    <td class="td3">-</td>
+                {% elif j == "t" %}
+                    <td class="td3" style="background-color:rgb(237, 59, 192);color:white;">他予約有り</td>
+                {% elif forloop.counter == 4 %}
+                    <td class="td3" style="background-color:rgb(59, 237, 80);">{{ j|date:"Y-m-d" }}</td>
+                {% elif forloop.counter == 5  %}
+                    <td class="td3">{{ j|date:"Y-m-d" }}</td>
+                {% elif j == None %}
+                    <td class="td3">貸出し前</td>
+                {% elif j == 0 %}  
+                    <td class="td3"><button type="submit" name="cancel" id="cancel+{{i.0}}" class="cancel" value="{{kensaku}}+{{i.0}}">キャンセル</button></td>
+                    <script>
+                        var btn = document.getElementById('cancel+{{i.0}}');
+                        btn.addEventListener('click', function(e) {
+                        var result = window.confirm('\キャンセルで、いいですか！');
+                        if( result == true ) {
+                        }
+                                 else {
+                        e.preventDefault();
+                        }
+                        })
+                    </script>
+                {% else %}
+                    <td class="td3">{{j}}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>   
+        {% endfor %}
+    </table>
+</form>
+    
+</div>
+{% endblock %}

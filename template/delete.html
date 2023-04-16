@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %} 
+  <link rel='stylesheet' type='text/css' href="{% static 'kanri.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+    <form class="form-signin" method='post'>{% csrf_token %} 
+      <navi id='process'>
+        <a  href="{% url 'rent' %}" class="otherNavi">貸出し</a>
+            <a href="{% url 'reserving' %}"  class="otherNavi">取置き</a>
+            <a class="currentNavi">情報</a>
+    </navi>
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/media/tanzawa2.png" id="tanzawa">
+        <hr>
+
+    <h1>情報</h1>
+    <div style="display:inline-block;">
+      <body>
+        <div id="all">
+            <h1>Delete</h1>
+            <form action="" method="POST">{% csrf_token %}
+                <input type="submit" value="削除実行" class="otherNavi" style="width:200px;">
+            </form>
+            <br><br>
+             <a href="{% url 'comment' %}" class="otherNavi" style="width:200px;">キャンセル</a>
+        </div>
+       
+    </body>
+    </div>
+        
+
+</div>
+{% endblock content %}

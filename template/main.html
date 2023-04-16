@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %} 
+  <link rel='stylesheet' type='text/css' href="{% static 'main.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+    
+    <header>
+        <!-- navi -------------------------------------->
+        <nav id='process'>
+            <a href="{% url 'main' %}" class="currentNavi" >メイン</a>
+            <a href="{% url 'login' %}" class="otherNavi">ログイン</a>
+            <a href="{% url 'information' %}" class="otherNavi">利用案内</a>
+        </nav>
+        <!-- title -------------------------------------->
+        <h1 class="application-title">片倉図書館</h1>
+        <img src="/static/tanzawa.png" id="tanzawa">
+        <article class="comment">
+           図書館では、新型コロナウイルス感染防止対策として、適切な距離を確保するために座席を減らすなどの対応をしています。ご不便をおかけして申し訳ありませんが、ご理解とご協力をお願いします。
+            <br>
+            また、利用案内にて、図書館に関する情報を掲載しています。来館前に、参照してください
+        </article>
+    </header>
+    
+    <main>
+        <!-- 簡単検索 ---------------------------------------->
+        <section class="middle-box">
+            <form class="form-signin" method='post'>{% csrf_token %} 
+                <label for="inputbox" class="kensaku" >かんたん検索</label>
+                <input type="text" id="kantan" name="kantan" placeholder="タイトル、著者、出版社などを入力してください" size="50px" >
+                <button type="submit" class="search-btn">検索</button>
+            </form>
+        </section>
+        <!-- 下段 --------------------------------------->
+        <section class="under-box">
+            <!-- ブロックＡ --------------------------------------->
+            <section class="block-right">
+                    <h5 >片倉図書館</h5>
+                    <img src="/static/toukoudai.png" id="toukoudai">
+            </section>
+            <!-- ブロックＢ --------------------------------------->
+            <section class="block-center">
+                {% for text in comment_data %}
+                    {% if text.1 == "1" %}
+                        <article>{{ text.0|linebreaksbr }}</article>
+                    {% endif %}
+                {% endfor %}    
+            </section>
+            <!-- ブロックＣ --------------------------------------->
+            <section class="block-left">
+                <h5>カレンダー</h5>
+                <div id="year_month"></div>
+                <button type="submit" id="prev" value="prev"> ◀ </button>
+                <button type="submit" id="next" value="next"> ▶ </button>
+                <table id="calendar_box"></table>
+                <script src="/static/calendar.js" ></script>
+            </section>
+        </section>
+    </main>
+
+</div>
+{% endblock content %}

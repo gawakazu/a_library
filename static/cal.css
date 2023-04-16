@@ -1,0 +1,29 @@
+table{
+    display:inline-block;
+    border-collapse: collapse;
+}
+
+th,td{
+    width:50px;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: lightgray;
+}
+
+body{
+    text-align: center;
+}
+h1,h6{
+    margin:0px;
+}
+
+
+
+li{
+    list-style: none;
+
+}
+
