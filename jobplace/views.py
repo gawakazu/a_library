@@ -15,8 +15,8 @@ import jaconv
 import MeCab
 from django.core.cache import cache
 import math
-#from django.db.models.functions import Concat
-#from django.db.models import Func
+from django.db.models.functions import Concat
+from django.db.models import Func
 
 ### 図書のメイン画面で、書籍の検索を可能とする。地図、情報、暦を表示する。
 class MainView(TemplateView):
@@ -76,16 +76,15 @@ class ResultView(PaginationMixin,TemplateView):
         key = "123"
         data = cache.get(key)
         #cacheにdataがない、または、保存したkeyword_listが異なる場合は、再度クエリを発行。
-        """
+        
         class ConcatOp(Func):
             function = ""
             arg_joiner = " || "
-        """
+        
         if not data or data[0] != keyword_list:
             if len(keyword_list)==1:
                  result = []
             else:
-                """
                 for i in range(len(keyword_list)):# 整形したｷｰﾜｰﾄﾞ(keyword_list)でfilterし、検索。
                     if i==0:
                         result = BookModel.objects.annotate(search=ConcatOp("book2","publisher__publisher2","author__author2")).filter(search__icontains=keyword_list[i])
@@ -98,6 +97,7 @@ class ResultView(PaginationMixin,TemplateView):
                     user = 0
                 else:
                     user = self.request.user
+                
                 """
                 #テーブルデータ不正により、book3の使用を停止。
                 for i in range(len(keyword_list)):# 整形したｷｰﾜｰﾄﾞ(keyword_list)でfilterし、検索。
@@ -111,7 +111,7 @@ class ResultView(PaginationMixin,TemplateView):
                     user = 0
                 else:
                     user = self.request.user
-            
+                """
       
             #　クエリ発行--------------------
             reserved_list,borrow_list,book_list,result_list = paginator.pagination(result,user)
