@@ -158,6 +158,7 @@ SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 SESSION_COOKIE_AGE = 60 * 5
 
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
