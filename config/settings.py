@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'k-library.onrender.com',
+    'a-library.onrender.com',
     '127.0.0.1',
     ]
 
