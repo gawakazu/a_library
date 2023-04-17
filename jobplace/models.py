@@ -17,7 +17,7 @@ class AuthorModel(models.Model):
 class LibraryModel(models.Model):
     library = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
-    location_map = models.ImageField(upload_to='')
+    location_map = models.CharField(max_length=100,blank=True,null=True)
     def __str__(self):
         return self.library
 
