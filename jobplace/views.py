@@ -17,7 +17,9 @@ from django.core.cache import cache
 import math
 from django.db.models.functions import Concat
 from django.db.models import Func
-
+import os
+import environ  
+from pathlib import Path 
 ### 図書のメイン画面で、書籍の検索を可能とする。地図、情報、暦を表示する。
 class MainView(TemplateView):
     template_name = 'main.html'
@@ -31,6 +33,17 @@ class MainView(TemplateView):
         comment_queryset = CommentModel.objects.all()
         comment_data = [[i.comment.replace('\\n','\n'),i.status] for i in comment_queryset]
         context['comment_data'] = comment_data
+        import json
+        #import requests
+
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        env = environ.Env()
+        env.read_env(os.path.join(BASE_DIR, ".env"))
+
+        lat = 35.63
+        lon = 139.34
+        context['key'] = env("key")
+
         return context
     def post(self,request,*args,**kwargs):
         context = super().get_context_data(**kwargs)
